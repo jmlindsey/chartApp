@@ -204,6 +204,24 @@ var vitalTokens = [
             }
         },
         {
+            re: /mask|mouthpiece|blow by/,
+            valueRe: /mask|mouthpiece|blow by/,
+            action: (value) => {
+                $(function () {
+                    $('#mask').prop("checked", true).trigger('click');
+                });
+            }
+        },
+        {
+            re: /mouthpiece/,
+            valueRe: /mouthpiece/,
+            action: (value) => {
+                $(function () {
+                    $('#mouthpiece').prop("checked", true).trigger('click');
+                });
+            }
+        },
+        {
             re: /productive/,
             valueRe: /productive/,
             action: (value) => {
