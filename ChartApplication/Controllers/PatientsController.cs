@@ -150,9 +150,9 @@ namespace ChartApplication.Controllers
             {
                 return HttpNotFound();
             }
-            var vitals = db.Vitals.Where(x => x.PatientId == id);
-            var interventions = db.Interventions.Where(x => x.PatientId == id);
-            var patient = db.Patients.SingleOrDefault(p => p.PatientId == id);
+            var vitals = db.Vitals.Where(x => x.PatientId == id).Where(x => x.DateTimeDone >= visit.VisitDate).Where(x => x.DateTimeDone <= visit.DischargeDate);
+            var interventions = db.Interventions.Where(x => x.PatientId == id).Where(x => x.DateTimeDone >= visit.VisitDate).Where(x => x.DateTimeDone <= visit.DischargeDate);
+            var patient = db.Patients.SingleOrDefault(p => p.PatientId == id); 
             HistoryViewModel histVM = new HistoryViewModel
             {
 
@@ -185,6 +185,7 @@ namespace ChartApplication.Controllers
                     UpperRightSound = v.UpperRightSound
                 })
             };
+            histVM.History = histVM.History.OrderBy(x => x.DateDone).OrderBy(x => x.TimeDone);
             return View(histVM);
         }
 

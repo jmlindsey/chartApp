@@ -13,6 +13,12 @@
 <b>@Html.DisplayFor(model => model.PatientName)</b>
 <b>ME # @Model.PatientId</b>*@
 
+@{ 
+    if (Model.History.Count() == 0)
+    {
+        @Html.Label("No chart data for this visit");
+    }
+}
 
 @foreach (var item in Model.History)
 {
