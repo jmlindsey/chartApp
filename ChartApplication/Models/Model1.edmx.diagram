@@ -4,14 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9fc360579340403b988498026bbecf54" Name="Diagram1">
-        <EntityTypeShape EntityType="ChartModel.Intervention" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Patient" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Visit" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Vital" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <AssociationConnector Association="ChartModel.FK__Intervent__Patie__160F4887" ManuallyRouted="false" />
-        <AssociationConnector Association="ChartModel.FK__Visit__PatientId__29221CFB" ManuallyRouted="false" />
-        <AssociationConnector Association="ChartModel.FK__Vital__PatientId__07C12930" ManuallyRouted="false" />
+      <Diagram DiagramId="2ae0272cfc9c4c21abf944f429f4f26f" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ChartModel.Employee" Width="1.5" PointX="4.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Intervention" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Patient" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Visit" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Vital" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="ChartModel.FK__Intervent__Emplo__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="ChartModel.FK__Vital__EmployeeI__5224328E" ManuallyRouted="false" />
+        <AssociationConnector Association="ChartModel.FK__Intervent__Patie__4D5F7D71" ManuallyRouted="false" />
+        <AssociationConnector Association="ChartModel.FK__Visit__PatientId__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="ChartModel.FK__Vital__PatientId__51300E55" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

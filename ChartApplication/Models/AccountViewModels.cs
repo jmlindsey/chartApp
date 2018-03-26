@@ -79,6 +79,14 @@ namespace ChartApplication.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public int EmployeeId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Position { get; set; }
+        public string LicenseCredentials { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

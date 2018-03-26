@@ -16,6 +16,7 @@ namespace ChartApplication.Models
     {
         public int VitalId { get; set; }
         public Nullable<int> PatientId { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
         public System.DateTime DateTimeDone { get; set; }
         public string UpperLeftSound { get; set; }
         public string UpperRightSound { get; set; }
@@ -30,6 +31,7 @@ namespace ChartApplication.Models
         public string O2Device { get; set; }
         public Nullable<int> Flow { get; set; }
     
+        public virtual Employee Employee { get; set; }
         public virtual Patient Patient { get; set; }
     }
 }

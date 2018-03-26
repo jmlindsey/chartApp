@@ -16,6 +16,7 @@ namespace ChartApplication.Models
     {
         public int InterventionId { get; set; }
         public Nullable<int> PatientId { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
         public string Activity1 { get; set; }
         public string Activity2 { get; set; }
         public string Activity3 { get; set; }
@@ -25,6 +26,7 @@ namespace ChartApplication.Models
         public string ResponeToTreatment { get; set; }
         public string HowTolerated { get; set; }
     
+        public virtual Employee Employee { get; set; }
         public virtual Patient Patient { get; set; }
     }
 }

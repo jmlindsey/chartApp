@@ -139,6 +139,7 @@ namespace ChartApplication.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
             return View();
         }
 
@@ -155,6 +156,20 @@ namespace ChartApplication.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var employee = new Employee
+                    {
+                        AccountId = user.Id,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        LicenseCredentials = model.LicenseCredentials,
+                        Position = model.Position
+                    };
+
+                    ChartEntities db = new ChartEntities();
+                    db.Employees.Add(employee);
+                    db.SaveChanges();
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

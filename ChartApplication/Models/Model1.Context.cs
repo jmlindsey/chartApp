@@ -25,6 +25,7 @@ namespace ChartApplication.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Intervention> Interventions { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Visit> Visits { get; set; }
