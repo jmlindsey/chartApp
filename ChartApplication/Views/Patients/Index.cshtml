@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ChartApplication.Models.Patient>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Patient Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientLast)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientLast),
+            @Html.DisplayNameFor(model => model.PatientFirst)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientLast)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientFirst)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PatientId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PatientId }) |
+            @Html.ActionLink("Chart", "Chart", new { id = item.PatientId })
+        </td>
+    </tr>
+    }
+
+</table>
+

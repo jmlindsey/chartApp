@@ -1,0 +1,98 @@
+﻿@model ChartApplication.Models.Intervention
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Intervention</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RouteGiven)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouteGiven)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseToTreatment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseToTreatment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HowTolerated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HowTolerated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.PatientFirst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.PatientFirst)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InterventionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

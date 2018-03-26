@@ -1,0 +1,82 @@
+﻿@model ChartApplication.Models.Patient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Patient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientFirst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientFirst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientLast)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientLast)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies5)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PatientId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

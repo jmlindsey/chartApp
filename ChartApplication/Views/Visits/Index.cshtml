@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ChartApplication.Models.Visit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Current Patients</h2>
+
+<p>
+    @Html.ActionLink("Admission", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Room)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.PatientLast),
+            @Html.DisplayNameFor(model => model.Patient.PatientFirst)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Room)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.PatientLast),
+            @Html.DisplayFor(modelItem => item.Patient.PatientFirst)
+        </td>
+        <td>
+            @Html.ActionLink("Chart", "Chart", "Patients", new { id=item.VisitId }, null) |
+            @Html.ActionLink("Demographics", "Details", "Patients", new { id=item.PatientId }, null) |
+            @Html.ActionLink("Past Visits", "History", new { id = item.Patient.PatientId })
+        </td>
+    </tr>
+}
+
+</table>

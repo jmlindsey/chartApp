@@ -1,0 +1,35 @@
+﻿@model ChartApplication.Models.ViewModels.VisitHistoryViewModel
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+@Html.DisplayFor(model => model.PatientName)
+ME# @Html.DisplayFor(model => model.PatientId)
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Visits:
+        </dt>
+
+        <dd>
+            Visit Date - Discharge Date
+        </dd>
+        @foreach(var item in Model.VisitHistory)
+        {
+        <dd>
+            
+            <a href="@Url.Action("ChartHistory", "Patients", new { id = item.VisitId })">
+                @Html.DisplayFor(model => item.VisitDate) -
+                @Html.DisplayFor(model => item.DischargeDate)
+            </a>
+        </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ChartApplication.Models.Intervention>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteGiven)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponseToTreatment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HowTolerated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.PatientFirst)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activity1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activity2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activity3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activity4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RouteGiven)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponseToTreatment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HowTolerated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeDone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.PatientFirst)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InterventionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InterventionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InterventionId })
+        </td>
+    </tr>
+}
+
+</table>

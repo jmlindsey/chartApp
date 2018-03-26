@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Intervention">
+          <Key>
+            <PropertyRef Name="InterventionId" />
+          </Key>
+          <Property Name="InterventionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="Activity1" Type="varchar" MaxLength="20" />
+          <Property Name="Activity2" Type="varchar" MaxLength="20" />
+          <Property Name="Activity3" Type="varchar" MaxLength="20" />
+          <Property Name="Activity4" Type="varchar" MaxLength="20" />
+          <Property Name="DateTimeDone" Type="datetime" Nullable="false" />
+          <Property Name="RouteGiven" Type="varchar" MaxLength="10" />
+          <Property Name="ResponeToTreatment" Type="varchar" MaxLength="20" />
+          <Property Name="HowTolerated" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientFirst" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PatientLast" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Allergies1" Type="varchar" MaxLength="20" />
+          <Property Name="Allergies2" Type="varchar" MaxLength="20" />
+          <Property Name="Allergies3" Type="varchar" MaxLength="20" />
+          <Property Name="Allergies4" Type="varchar" MaxLength="20" />
+          <Property Name="Allergies5" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="VisitId" />
+          </Key>
+          <Property Name="VisitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room" Type="int" Nullable="false" />
+          <Property Name="VisitDate" Type="date" Nullable="false" />
+          <Property Name="DischargeDate" Type="date" />
+          <Property Name="PatientId" Type="int" />
+        </EntityType>
+        <EntityType Name="Vital">
+          <Key>
+            <PropertyRef Name="VitalId" />
+          </Key>
+          <Property Name="VitalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="DateTimeDone" Type="datetime" Nullable="false" />
+          <Property Name="UpperLeftSound" Type="varchar" MaxLength="20" />
+          <Property Name="UpperRightSound" Type="varchar" MaxLength="20" />
+          <Property Name="LowerLeftSound" Type="varchar" MaxLength="20" />
+          <Property Name="LowerRightSound" Type="varchar" MaxLength="20" />
+          <Property Name="MiddleSound" Type="varchar" MaxLength="20" />
+          <Property Name="RR" Type="int" />
+          <Property Name="HR" Type="int" />
+          <Property Name="BP" Type="varchar" MaxLength="8" />
+          <Property Name="Saturation" Type="int" />
+          <Property Name="Cough" Type="varchar" MaxLength="20" />
+          <Property Name="O2Device" Type="varchar" MaxLength="20" />
+          <Property Name="Flow" Type="int" />
+        </EntityType>
+        <Association Name="FK__Intervent__Patie__41EDCAC5">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Intervention" Type="Self.Intervention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="Intervention">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visit__PatientId__47A6A41B">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vital__PatientId__44CA3770">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Vital" Type="Self.Vital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="Vital">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChartModelStoreContainer">
+          <EntitySet Name="Intervention" EntityType="Self.Intervention" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visit" EntityType="Self.Visit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vital" EntityType="Self.Vital" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Intervent__Patie__41EDCAC5" Association="Self.FK__Intervent__Patie__41EDCAC5">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Intervention" EntitySet="Intervention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visit__PatientId__47A6A41B" Association="Self.FK__Visit__PatientId__47A6A41B">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Visit" EntitySet="Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vital__PatientId__44CA3770" Association="Self.FK__Vital__PatientId__44CA3770">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Vital" EntitySet="Vital" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Intervention">
+          <Key>
+            <PropertyRef Name="InterventionId" />
+          </Key>
+          <Property Name="InterventionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="Activity1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activity2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activity3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Activity4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeDone" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RouteGiven" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResponeToTreatment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HowTolerated" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK__Intervent__Patie__160F4887" FromRole="Intervention" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientId" />
+          </Key>
+          <Property Name="PatientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientFirst" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PatientLast" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Allergies1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Allergies2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Allergies3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Allergies4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Allergies5" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Interventions" Relationship="Self.FK__Intervent__Patie__160F4887" FromRole="Patient" ToRole="Intervention" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK__Visit__PatientId__29221CFB" FromRole="Patient" ToRole="Visit" />
+          <NavigationProperty Name="Vitals" Relationship="Self.FK__Vital__PatientId__07C12930" FromRole="Patient" ToRole="Vital" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="VisitId" />
+          </Key>
+          <Property Name="VisitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
+          <Property Name="VisitDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DischargeDate" Type="DateTime" Precision="0" />
+          <Property Name="PatientId" Type="Int32" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK__Visit__PatientId__29221CFB" FromRole="Visit" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Vital">
+          <Key>
+            <PropertyRef Name="VitalId" />
+          </Key>
+          <Property Name="VitalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="DateTimeDone" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpperLeftSound" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpperRightSound" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LowerLeftSound" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LowerRightSound" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleSound" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RR" Type="Int32" />
+          <Property Name="HR" Type="Int32" />
+          <Property Name="BP" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Saturation" Type="Int32" />
+          <Property Name="Cough" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="O2Device" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Flow" Type="Int32" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK__Vital__PatientId__07C12930" FromRole="Vital" ToRole="Patient" />
+        </EntityType>
+        <Association Name="FK__Intervent__Patie__160F4887">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Intervention" Type="Self.Intervention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="Intervention">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visit__PatientId__29221CFB">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vital__PatientId__07C12930">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Vital" Type="Self.Vital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientId" />
+            </Principal>
+            <Dependent Role="Vital">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChartEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Interventions" EntityType="Self.Intervention" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Visits" EntityType="Self.Visit" />
+          <EntitySet Name="Vitals" EntityType="Self.Vital" />
+          <AssociationSet Name="FK__Intervent__Patie__160F4887" Association="Self.FK__Intervent__Patie__160F4887">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Intervention" EntitySet="Interventions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visit__PatientId__29221CFB" Association="Self.FK__Visit__PatientId__29221CFB">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Visit" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vital__PatientId__07C12930" Association="Self.FK__Vital__PatientId__07C12930">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="Vital" EntitySet="Vitals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChartModelStoreContainer" CdmEntityContainer="ChartEntities">
+          <EntitySetMapping Name="Interventions">
+            <EntityTypeMapping TypeName="ChartModel.Intervention">
+              <MappingFragment StoreEntitySet="Intervention">
+                <ScalarProperty Name="InterventionId" ColumnName="InterventionId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Activity1" ColumnName="Activity1" />
+                <ScalarProperty Name="Activity2" ColumnName="Activity2" />
+                <ScalarProperty Name="Activity3" ColumnName="Activity3" />
+                <ScalarProperty Name="Activity4" ColumnName="Activity4" />
+                <ScalarProperty Name="DateTimeDone" ColumnName="DateTimeDone" />
+                <ScalarProperty Name="RouteGiven" ColumnName="RouteGiven" />
+                <ScalarProperty Name="ResponeToTreatment" ColumnName="ResponeToTreatment" />
+                <ScalarProperty Name="HowTolerated" ColumnName="HowTolerated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="ChartModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="PatientFirst" ColumnName="PatientFirst" />
+                <ScalarProperty Name="PatientLast" ColumnName="PatientLast" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Allergies1" ColumnName="Allergies1" />
+                <ScalarProperty Name="Allergies2" ColumnName="Allergies2" />
+                <ScalarProperty Name="Allergies3" ColumnName="Allergies3" />
+                <ScalarProperty Name="Allergies4" ColumnName="Allergies4" />
+                <ScalarProperty Name="Allergies5" ColumnName="Allergies5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visits">
+            <EntityTypeMapping TypeName="ChartModel.Visit">
+              <MappingFragment StoreEntitySet="Visit">
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+                <ScalarProperty Name="DischargeDate" ColumnName="DischargeDate" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vitals">
+            <EntityTypeMapping TypeName="ChartModel.Vital">
+              <MappingFragment StoreEntitySet="Vital">
+                <ScalarProperty Name="VitalId" ColumnName="VitalId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="DateTimeDone" ColumnName="DateTimeDone" />
+                <ScalarProperty Name="UpperLeftSound" ColumnName="UpperLeftSound" />
+                <ScalarProperty Name="UpperRightSound" ColumnName="UpperRightSound" />
+                <ScalarProperty Name="LowerLeftSound" ColumnName="LowerLeftSound" />
+                <ScalarProperty Name="LowerRightSound" ColumnName="LowerRightSound" />
+                <ScalarProperty Name="MiddleSound" ColumnName="MiddleSound" />
+                <ScalarProperty Name="RR" ColumnName="RR" />
+                <ScalarProperty Name="HR" ColumnName="HR" />
+                <ScalarProperty Name="BP" ColumnName="BP" />
+                <ScalarProperty Name="Saturation" ColumnName="Saturation" />
+                <ScalarProperty Name="Cough" ColumnName="Cough" />
+                <ScalarProperty Name="O2Device" ColumnName="O2Device" />
+                <ScalarProperty Name="Flow" ColumnName="Flow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

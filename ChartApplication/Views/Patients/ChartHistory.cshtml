@@ -1,0 +1,153 @@
+﻿@model ChartApplication.Models.ViewModels.HistoryViewModel
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "ChartHistory";
+}
+<link rel="stylesheet" href="~/Content/style.css" />
+
+
+@*<h3>
+    Visit Dates: @Html.DisplayFor(model => Model.VisitDate) - @Html.DisplayFor(model => Model.DischargeDate)
+</h3>
+<b>@Html.DisplayFor(model => model.PatientName)</b>
+<b>ME # @Model.PatientId</b>*@
+
+
+@foreach (var item in Model.History)
+{
+    <table class="chartHistory">
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.DateDone)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.TimeDone)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.UpperLeftSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.UpperRightSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.LowerLeftSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.LowerRightSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.MiddleSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.RR)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.HR)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.BP)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.Saturation)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control3">
+                @Html.DisplayFor(model => item.Cough)
+            </td>
+        </tr>
+        <tr><td class="form-control2"></td></tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.O2Device)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.Flow)
+            </td>
+        </tr>
+        <tr><td class="form-control2"></td></tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.Activity1)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.Activity2)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.Activity3)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.Activity4)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => item.RouteGiven)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control3">
+                @Html.DisplayFor(model => item.HowTolerated)
+            </td>
+        </tr>
+        <tr><td class="submitButtonHolder"> </td></tr>
+    </table>
+}
+
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+
+@* start scroll bart at most recent intervention history *@
+<script>
+    $(document).ready(function () {
+        var maxScrollLeft = $('#chartHistoryContainer').get(0).scrollWidth - $('#chartHistoryContainer').get(0).clientWidth;
+        $("#chartHistoryContainer").scrollLeft(maxScrollLeft);
+    });
+</script>
+@*<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+}
+
+

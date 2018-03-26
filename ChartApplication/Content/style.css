@@ -1,0 +1,104 @@
+﻿html, body {
+    width: 100%;
+
+}
+
+.chart {
+    height: 100%;
+    width: 100%;
+    border: 5px solid #808080;
+    white-space: nowrap;
+    overflow: scroll;
+}
+
+
+
+table {
+    display: inline-block;
+    margin: 0;
+    border-collapse: collapse;
+    padding: 0;
+
+}
+
+
+
+
+
+
+
+.chart-label, .form-control2, .form-control3{
+    display: block;
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    color: #555555;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.form-control2 {
+    line-height: 1.9;
+}
+
+.form-control3 {
+    line-height: 1.7;
+}
+
+
+
+
+
+#newChartInstance td, #newChartInstance th {
+    padding: 0;
+}
+
+#chartHistoryContainer {
+    display: inline-block;
+    max-width: 200%;
+    overflow: scroll;
+}
+#chartContainer {
+    max-width: 100%;
+    white-space: nowrap;
+    border: 1px solid green;
+    display: flex;
+    flex-wrap: nowrap;
+}
+form {
+    height: 100%;
+    width: auto;
+    display: inline-block;
+}
+
+.buttonPlaceholder {
+    height: 35.75px;
+    background-color: gray;
+    border: 2px solid black;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
