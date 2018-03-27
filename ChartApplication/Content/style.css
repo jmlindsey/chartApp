@@ -30,7 +30,7 @@ table {
 .chart-label, .form-control2, .form-control3{
     display: block;
     width: 100%;
-    height: 30px;
+    height: 24px;
     font-size: 14px;
     color: #555555;
     text-align: center;
@@ -43,7 +43,7 @@ table {
 }
 
 .form-control2 {
-    line-height: 1.9;
+    line-height: 1.6;
 }
 
 .form-control3 {

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ChartApplication.Models;
 using ChartApplication.Models.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace ChartApplication.Controllers
 {
@@ -42,15 +43,23 @@ namespace ChartApplication.Controllers
             {
                 return HttpNotFound();
             }
-            var vitals = db.Vitals.Where(x => x.PatientId == patient.PatientId).Where(i => i.DateTimeDone >= visit.VisitDate); 
+            var vitals = db.Vitals.Where(x => x.PatientId == patient.PatientId).Where(i => i.DateTimeDone >= visit.VisitDate);
+
+            var userId = User.Identity.GetUserId();
             var interventions = db.Interventions.Where(x => x.PatientId == patient.PatientId).Where(i => i.DateTimeDone >= visit.VisitDate);
+            var employee = db.Employees.FirstOrDefault(e => e.AccountId == userId);
 
             HistoryViewModel histVM = new HistoryViewModel
             {
                 History = vitals.Join(interventions,
                 v => v.DateTimeDone, i => i.DateTimeDone,
-                (v, i) => new ChartViewModelInstance
+                (v, i) => 
+                    new ChartViewModelInstance
                 {
+                    EmployeeName = i.Employee.LastName + ", " + i.Employee.FirstName,
+                    EmployeeInitials = i.Employee.FirstName.Substring(0, 1) + i.Employee.LastName.Substring(0, 1),
+                    Credentials = i.Employee.LicenseCredentials,
+
                     Activity1 = i.Activity1,
                     Activity2 = i.Activity2,
                     Activity3 = i.Activity3,
@@ -76,11 +85,15 @@ namespace ChartApplication.Controllers
                     UpperRightSound = v.UpperRightSound
                 })
         };
-
-        ChartViewModel chartVM = new ChartViewModel {
-            PatientId = patient.PatientId,
-            PatientName = patient.PatientLast + ", " + patient.PatientFirst,
-            historyVM = histVM
+            ChartViewModel chartVM = new ChartViewModel
+            {
+                EmployeeId = employee.EmployeeId,
+                EmployeeName = employee.LastName + ", " + employee.FirstName,
+                EmployeeInitials = employee.FirstName.Substring(0,1) + employee.LastName.Substring(0,1),
+                Credentials = employee.LicenseCredentials,
+                PatientId = patient.PatientId,
+                PatientName = patient.PatientLast + ", " + patient.PatientFirst,
+                historyVM = histVM
             };
         
             chartVM.historyVM.History = chartVM.historyVM.History.OrderBy(x => x.DateDone).OrderBy(x => x.TimeDone);
@@ -98,6 +111,7 @@ namespace ChartApplication.Controllers
             {
                 var intervention = new Intervention
                 {
+                    EmployeeId = chartVM.EmployeeId,
                     DateTimeDone = new DateTime(chartVM.DateDone.Year, chartVM.DateDone.Month, chartVM.DateDone.Day,
                                                 chartVM.TimeDone.Hour, chartVM.TimeDone.Minute, chartVM.TimeDone.Second),
                     Activity1 = chartVM.Activity1,
@@ -112,6 +126,7 @@ namespace ChartApplication.Controllers
 
                 var vital = new Vital
                 {
+                    EmployeeId = chartVM.EmployeeId,
                     BP = chartVM.BP,
                     RR = chartVM.RR,
                     Saturation = chartVM.Saturation,
@@ -160,6 +175,9 @@ namespace ChartApplication.Controllers
                 v => v.DateTimeDone, i => i.DateTimeDone,
                 (v, i) => new ChartViewModelInstance
                 {
+                    EmployeeInitials = i.Employee.FirstName.Substring(0,1) + i.Employee.LastName.Substring(0,1),
+                    Credentials = i.Employee.LicenseCredentials,
+                    EmployeeName = i.Employee.LastName + ", " + i.Employee.FirstName,
                     Activity1 = i.Activity1,
                     Activity2 = i.Activity2,
                     Activity3 = i.Activity3,

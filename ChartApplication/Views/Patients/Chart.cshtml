@@ -7,7 +7,6 @@
 
 <link rel="stylesheet" href="~/Content/style.css" />
 
-<h2>Chart</h2>
 <b>@Html.DisplayFor(model => model.PatientName)</b>
 
 <b>ME # @Model.PatientId</b>
@@ -17,104 +16,110 @@
     <table id="chartLabels">
         <tr>
             <td class="chart-label">
-                @Html.Label("Date", htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.Label("Time", htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.UpperLeftSound, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.UpperRightSound, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.LowerLeftSound, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.LowerRightSound, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.MiddleSound, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.RR, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.HR, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.BP, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Saturation, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Cough, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Entered By")
             </td>
         </tr>
         <tr><td class="chart-label"></td></tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.O2Device, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Date")
             </td>
         </tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.Flow, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Time")
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.UpperLeftSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.UpperRightSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.LowerLeftSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.LowerRightSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.MiddleSound)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.RR)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.HR)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.BP)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.Saturation)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.Cough)
             </td>
         </tr>
         <tr><td class="chart-label"></td></tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.Activity1, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.O2Device)
             </td>
         </tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.Activity2, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Flow)
+            </td>
+        </tr>
+        <tr><td class="chart-label"></td></tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.Activity1)
             </td>
         </tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.Activity3, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Activity2)
             </td>
         </tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.Activity4, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Activity3)
             </td>
         </tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.RouteGiven, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Activity4)
             </td>
         </tr>
         <tr>
             <td class="chart-label">
-                @Html.LabelFor(model => model.HowTolerated, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.RouteGiven)
+            </td>
+        </tr>
+        <tr>
+            <td class="chart-label">
+                @Html.LabelFor(model => model.HowTolerated)
             </td>
         </tr>
         <tr><td class="submitButtonHolder"></td></tr>
@@ -122,184 +127,192 @@
     <div id="chartHistoryContainer">
         @Html.Partial("ChartHistory", Model.historyVM)
     </div>
-
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PatientId)
 
-        <table id="newChartInstance">
+    <table id="newChartInstance">
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => model.EmployeeInitials)
+                @Html.HiddenFor(model => model.EmployeeId)
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control2">
+                @Html.DisplayFor(model => model.Credentials)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.DateDone, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.TimeDone, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.UpperLeftSound, new { htmlAttributes = new { @class = "form-control", id = "uls" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.UpperLeftSound, "", new { @class = "text-danger" })
+            </td>
+        </tr>
 
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.DateDone, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.TimeDone, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.UpperLeftSound, new { htmlAttributes = new { @class = "form-control", id = "uls"} })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.UpperLeftSound, "", new { @class = "text-danger" })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.UpperRightSound, new { htmlAttributes = new { @class = "form-control", id = "urs" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.UpperRightSound, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.LowerLeftSound, new { htmlAttributes = new { @class = "form-control", id = "lls" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.LowerLeftSound, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.LowerRightSound, new { htmlAttributes = new { @class = "form-control", id = "lrs" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.LowerRightSound, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.MiddleSound, new { htmlAttributes = new { @class = "form-control", id = "ms" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.MiddleSound, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td id="rrBox">
+                @Html.EditorFor(model => model.RR, new { htmlAttributes = new { @class = "form-control", id = "rr" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.RR, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.HR, new { htmlAttributes = new { @class = "form-control", id = "hr" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.HR, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.BP, new { htmlAttributes = new { @class = "form-control", id = "bp" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.BP, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Saturation, new { htmlAttributes = new { @class = "form-control", id = "saturation" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Saturation, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control">
+                productive @Html.RadioButtonFor(model => model.Cough, "productive", new { id = "productive", htmlAttributes = new { @class = "form-control" } })
+                non-productive @Html.RadioButtonFor(model => model.Cough, "non-productive", new { id = "nonProductive", htmlAttributes = new { @class = "form-control" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Cough, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control"></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.O2Device, new { htmlAttributes = new { @class = "form-control", id = "o2Device" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.O2Device, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Flow, new { htmlAttributes = new { @class = "form-control", id = "flow" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Flow, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr><td class="form-control"></td></tr>
 
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.UpperRightSound, new { htmlAttributes = new { @class = "form-control", id = "urs" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.UpperRightSound, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.LowerLeftSound, new { htmlAttributes = new { @class = "form-control", id = "lls" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.LowerLeftSound, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.LowerRightSound, new { htmlAttributes = new { @class = "form-control", id = "lrs" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.LowerRightSound, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.MiddleSound, new { htmlAttributes = new { @class = "form-control", id = "ms" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.MiddleSound, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td id="rrBox">
-                    @Html.EditorFor(model => model.RR, new { htmlAttributes = new { @class = "form-control", id = "rr" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.RR, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.HR, new { htmlAttributes = new { @class = "form-control", id = "hr" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.HR, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.BP, new { htmlAttributes = new { @class = "form-control", id = "bp" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.BP, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.Saturation, new { htmlAttributes = new { @class = "form-control", id = "saturation" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Saturation, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="form-control">
-                    productive @Html.RadioButtonFor(model => model.Cough, "productive", new { id = "productive", htmlAttributes = new { @class = "form-control" } })
-                    non-productive @Html.RadioButtonFor(model => model.Cough, "non-productive", new { id = "nonProductive", htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Cough, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="form-control"></td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.O2Device, new { htmlAttributes = new { @class = "form-control", id = "o2Device" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.O2Device, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.Flow, new { htmlAttributes = new { @class = "form-control", id = "flow" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Flow, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr><td class="form-control"></td></tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Activity1, new { htmlAttributes = new { @class = "form-control", id = "activity1" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Activity1, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Activity2, new { htmlAttributes = new { @class = "form-control", id = "activity2" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Activity2, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Activity3, new { htmlAttributes = new { @class = "form-control", id = "activity3" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Activity3, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Activity4, new { htmlAttributes = new { @class = "form-control", id = "activity4" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Activity4, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control">
+                mask @Html.RadioButtonFor(model => model.RouteGiven, "mask", new { id = "mask", htmlAttributes = new { @class = "form -control" } })
+                mouthpiece @Html.RadioButtonFor(model => model.RouteGiven, "mouthpiece", new { id = "mouthpiece", htmlAttributes = new { @class = "form-control" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.RouteGiven, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td class="form-control">
+                well @Html.RadioButtonFor(model => model.HowTolerated, "well", new { id = "wellTolerated", htmlAttributes = new { @class = "form -control" } })
+                poor @Html.RadioButtonFor(model => model.HowTolerated, "poor", new { id = "poorlyTolerated", htmlAttributes = new { @class = "form-control" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.HowTolerated, "", new { @class = "text-danger" })
+            </td>
+        </tr>
 
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.Activity1, new { htmlAttributes = new { @class = "form-control", id = "activity1" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Activity1, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.Activity2, new { htmlAttributes = new { @class = "form-control", id = "activity2" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Activity2, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.Activity3, new { htmlAttributes = new { @class = "form-control", id = "activity3" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Activity3, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.Activity4, new { htmlAttributes = new { @class = "form-control", id = "activity4" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Activity4, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="form-control">
-                    mask @Html.RadioButtonFor(model => model.RouteGiven, "mask", new { id = "mask", htmlAttributes = new { @class = "form -control" } })
-                    mouthpiece @Html.RadioButtonFor(model => model.RouteGiven, "mouthpiece", new { id = "mouthpiece", htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.RouteGiven, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="form-control">
-                    well @Html.RadioButtonFor(model => model.HowTolerated, "well", new { id = "wellTolerated", htmlAttributes = new { @class = "form -control" } })
-                    poor @Html.RadioButtonFor(model => model.HowTolerated, "poor", new { id = "poorlyTolerated", htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.HowTolerated, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-
-            <tr>
-                <td id="submitButtonHolder"><input type="submit" value="Submit" id="submitButton" class="btn btn-default" /></td>
-            </tr>
-        </table>
+        <tr>
+            <td id="submitButtonHolder"><input type="submit" value="Submit" id="submitButton" class="btn btn-default" /></td>
+        </tr>
+    </table>
 
 
     }

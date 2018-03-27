@@ -8,13 +8,19 @@ namespace ChartApplication.Models.ViewModels
 {
     public class ChartViewModelInstance
     {
+        public int EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeInitials { get; set; }
+        public string Position { get; set; }
+        public string Credentials { get; set; }
+
         public Nullable<int> PatientId { get; set; }
         public string PatientName { get; set; }
 
         [DataType(DataType.Date)]
         public System.DateTime DateDone { get; set; }
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm tt}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm tt}")]
         public System.DateTime TimeDone { get; set; }
 
         //vitals

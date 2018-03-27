@@ -8,6 +8,12 @@ namespace ChartApplication.Models.ViewModels
 {
     public class ChartViewModel
     {
+        public int EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeInitials { get; set; }
+        public string Position { get; set; }
+        public string Credentials { get; set; }
+
         public HistoryViewModel historyVM;
 
         [DataType(DataType.Date)]

@@ -13,120 +13,125 @@
 <b>@Html.DisplayFor(model => model.PatientName)</b>
 <b>ME # @Model.PatientId</b>*@
 
-@{ 
-    if (Model.History.Count() == 0)
-    {
-        @Html.Label("No chart data for this visit");
-    }
-}
 
 @foreach (var item in Model.History)
 {
-    <table class="chartHistory">
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.DateDone)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.TimeDone)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.UpperLeftSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.UpperRightSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.LowerLeftSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.LowerRightSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.MiddleSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.RR)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.HR)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.BP)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.Saturation)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control3">
-                @Html.DisplayFor(model => item.Cough)
-            </td>
-        </tr>
-        <tr><td class="form-control2"></td></tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.O2Device)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.Flow)
-            </td>
-        </tr>
-        <tr><td class="form-control2"></td></tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.Activity1)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.Activity2)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.Activity3)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.Activity4)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => item.RouteGiven)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control3">
-                @Html.DisplayFor(model => item.HowTolerated)
-            </td>
-        </tr>
-        <tr><td class="submitButtonHolder"> </td></tr>
-    </table>
+<table class="chartHistory">
+
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.EmployeeInitials)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Credentials)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.DateDone)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.TimeDone)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.UpperLeftSound)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.UpperRightSound)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.LowerLeftSound)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.LowerRightSound)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.MiddleSound)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.RR)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.HR)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.BP)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Saturation)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control3">
+            @Html.DisplayFor(model => item.Cough)
+        </td>
+    </tr>
+    <tr><td class="form-control2"></td></tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.O2Device)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Flow)
+        </td>
+    </tr>
+    <tr><td class="form-control2"></td></tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Activity1)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Activity2)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Activity3)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.Activity4)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control2">
+            @Html.DisplayFor(model => item.RouteGiven)
+        </td>
+    </tr>
+    <tr>
+        <td class="form-control3">
+            @Html.DisplayFor(model => item.HowTolerated)
+        </td>
+    </tr>
+    <tr><td class="submitButtonHolder"> </td></tr>
+</table>
 }
 
 
