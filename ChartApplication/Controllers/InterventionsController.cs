@@ -15,9 +15,10 @@ namespace ChartApplication.Controllers
         private ChartEntities db = new ChartEntities();
 
         // GET: Interventions
-        public ActionResult Index()
+        [ChildActionOnly]
+        public ActionResult History()
         {
-            var interventions = db.Interventions.Include(i => i.Patient);
+            var interventions = db.Interventions.Include(v => v.Patient);
             return View(interventions.ToList());
         }
 

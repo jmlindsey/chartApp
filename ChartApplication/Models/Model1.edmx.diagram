@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2ae0272cfc9c4c21abf944f429f4f26f" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="ChartModel.Employee" Width="1.5" PointX="4.5" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Intervention" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Patient" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Visit" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChartModel.Vital" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Employee" Width="1.5" PointX="7.875" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Intervention" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Patient" Width="1.5" PointX="2.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Visit" Width="1.5" PointX="0.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChartModel.Vital" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
         <AssociationConnector Association="ChartModel.FK__Intervent__Emplo__4E53A1AA" ManuallyRouted="false" />
         <AssociationConnector Association="ChartModel.FK__Vital__EmployeeI__5224328E" ManuallyRouted="false" />
         <AssociationConnector Association="ChartModel.FK__Intervent__Patie__4D5F7D71" ManuallyRouted="false" />

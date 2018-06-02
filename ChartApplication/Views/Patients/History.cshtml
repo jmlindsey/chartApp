@@ -1,0 +1,140 @@
+﻿@model ChartApplication.Models.ViewModels.ChartViewModel
+
+@{
+    ViewBag.Title = "History";
+}
+
+<div id="main">
+
+    <b>@Html.DisplayFor(model => model.PatientName)</b>
+
+    <b>ME # @Model.PatientId</b>
+
+    <div id="chartContainer">
+        <div id="buttonHolder">
+
+            @Html.ActionLink("back", "VisitHistory", "Visits", new { id = Model.PatientId }, new { id = "backButton", @class = "btn btn-primary btn-large" })
+
+        </div>
+
+        <table id="chartLabels">
+            <tr>
+                <td class="chart-label">
+                    @Html.Label("Entered By")
+                </td>
+            </tr>
+            <tr><td class="chart-label"></td></tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.Label("Date")
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.Label("Time")
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.UpperLeftSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.UpperRightSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.LowerLeftSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.LowerRightSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.MiddleSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.RR)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.HR)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.BP)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Saturation)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Cough)
+                </td>
+            </tr>
+            <tr><td class="chart-label"></td></tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.O2Device)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Flow)
+                </td>
+            </tr>
+            <tr><td class="chart-label"></td></tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity1)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity2)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity3)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity4)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.RouteGiven)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.HowTolerated)
+                </td>
+            </tr>
+            <tr><td class="submitButtonHolder"></td></tr>
+        </table>
+
+
+        <div id="chartHistoryContainer">
+            @Html.Partial("ChartHistory", Model.historyVM)
+        </div>
+    </div>
+
+
+
+</div>

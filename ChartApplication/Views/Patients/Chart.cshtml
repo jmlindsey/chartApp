@@ -4,326 +4,371 @@
     ViewBag.Title = "Chart";
 }
 
-
+<script src="~/Scripts/style/style.js"></script>
 <link rel="stylesheet" href="~/Content/style.css" />
 
-<b>@Html.DisplayFor(model => model.PatientName)</b>
-
-<b>ME # @Model.PatientId</b>
-
-
-<div id="chartContainer">
-    <table id="chartLabels">
-        <tr>
-            <td class="chart-label">
-                @Html.Label("Entered By")
-            </td>
-        </tr>
-        <tr><td class="chart-label"></td></tr>
-        <tr>
-            <td class="chart-label">
-                @Html.Label("Date")
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.Label("Time")
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.UpperLeftSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.UpperRightSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.LowerLeftSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.LowerRightSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.MiddleSound)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.RR)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.HR)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.BP)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Saturation)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Cough)
-            </td>
-        </tr>
-        <tr><td class="chart-label"></td></tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.O2Device)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Flow)
-            </td>
-        </tr>
-        <tr><td class="chart-label"></td></tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Activity1)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Activity2)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Activity3)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.Activity4)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.RouteGiven)
-            </td>
-        </tr>
-        <tr>
-            <td class="chart-label">
-                @Html.LabelFor(model => model.HowTolerated)
-            </td>
-        </tr>
-        <tr><td class="submitButtonHolder"></td></tr>
-    </table>
-    <div id="chartHistoryContainer">
-        @Html.Partial("ChartHistory", Model.historyVM)
+<div id="loaderContainer">
+    <div id="bracket">
+        <div id="loader"></div>
+        <p>saving</p>
     </div>
-    @using (Html.BeginForm())
+</div>
+
+
+
+<div id="main">
+
+    <b>@Html.DisplayFor(model => model.PatientName)</b>
+
+    <b>ME # @Model.PatientId</b>
+
+    <div id="chartContainer">
+        <div id="buttonHolder">
+
+            <div class="btn btn-primary btn-large" id="showHideHistory">hide history</div>
+
+            <div class="btn btn-primary btn-large" id="saveChanges">save</div>
+            @Html.ActionLink("back", "Index", "Visits", null, new { id = "backButton", @class = "btn btn-primary btn-large" })
+
+        </div>
+
+        <table id="chartLabels">
+            <tr>
+                <td class="chart-label">
+                    @Html.Label("Entered By")
+                </td>
+            </tr>
+            <tr><td class="chart-label"></td></tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.Label("Date")
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.Label("Time")
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.UpperLeftSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.UpperRightSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.LowerLeftSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.LowerRightSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.MiddleSound)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.RR)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.HR)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.BP)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Saturation)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Cough)
+                </td>
+            </tr>
+            <tr><td class="chart-label"></td></tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.O2Device)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Flow)
+                </td>
+            </tr>
+            <tr><td class="chart-label"></td></tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity1)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity2)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity3)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.Activity4)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.RouteGiven)
+                </td>
+            </tr>
+            <tr>
+                <td class="chart-label">
+                    @Html.LabelFor(model => model.HowTolerated)
+                </td>
+            </tr>
+            <tr><td class="submitButtonHolder"></td></tr>
+        </table>
+
+
+        <div id="chartHistoryContainer">
+            @Html.Partial("ChartHistory", Model.historyVM)
+        </div>
+
+        <script>
+            $(function () {
+                $("#showHideHistory").on("click", function () {
+                    $("#chartHistoryContainer").toggle("drop", 500, function () {
+                        if ($("#showHideHistory").val() == "hide history") {
+                            $("#showHideHistory").prop("value", "show history");
+                        }
+                        else {
+                            $("#showHideHistory").prop("value", "hide history");
+
+                        }
+
+                        console.log($("#showHideHistory").val());
+                    });
+                    console.log("toggle");
+                });
+            });
+
+
+        </script>
+
+
+
+
+
+
+        @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PatientId)
 
-    <table id="newChartInstance">
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => model.EmployeeInitials)
-                @Html.HiddenFor(model => model.EmployeeId)
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control2">
-                @Html.DisplayFor(model => model.Credentials)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.DateDone, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.TimeDone, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.UpperLeftSound, new { htmlAttributes = new { @class = "form-control", id = "uls" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.UpperLeftSound, "", new { @class = "text-danger" })
-            </td>
-        </tr>
+        <table id="newChartInstance">
+            <tr>
+                <td class="form-control2">
+                    @Html.DisplayFor(model => model.EmployeeInitials)
+                    @Html.HiddenFor(model => model.EmployeeId)
+                </td>
+            </tr>
+            <tr>
+                <td class="form-control2">
+                    @Html.DisplayFor(model => model.Credentials)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.DateDone, new { htmlAttributes = new { @class = "form-control2" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.TimeDone, new { htmlAttributes = new { @class = "form-control2" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.UpperLeftSound, new { htmlAttributes = new { @class = "form-control2", id = "uls" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.UpperLeftSound, "", new { @class = "text-danger" })
+                </td>
+            </tr>
 
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.UpperRightSound, new { htmlAttributes = new { @class = "form-control", id = "urs" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.UpperRightSound, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.LowerLeftSound, new { htmlAttributes = new { @class = "form-control", id = "lls" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.LowerLeftSound, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.LowerRightSound, new { htmlAttributes = new { @class = "form-control", id = "lrs" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.LowerRightSound, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.MiddleSound, new { htmlAttributes = new { @class = "form-control", id = "ms" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.MiddleSound, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td id="rrBox">
-                @Html.EditorFor(model => model.RR, new { htmlAttributes = new { @class = "form-control", id = "rr" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.RR, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.HR, new { htmlAttributes = new { @class = "form-control", id = "hr" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.HR, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.BP, new { htmlAttributes = new { @class = "form-control", id = "bp" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.BP, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.Saturation, new { htmlAttributes = new { @class = "form-control", id = "saturation" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Saturation, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control">
-                productive @Html.RadioButtonFor(model => model.Cough, "productive", new { id = "productive", htmlAttributes = new { @class = "form-control" } })
-                non-productive @Html.RadioButtonFor(model => model.Cough, "non-productive", new { id = "nonProductive", htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Cough, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control"></td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.O2Device, new { htmlAttributes = new { @class = "form-control", id = "o2Device" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.O2Device, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.Flow, new { htmlAttributes = new { @class = "form-control", id = "flow" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Flow, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr><td class="form-control"></td></tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.UpperRightSound, new { htmlAttributes = new { @class = "form-control2", id = "urs" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.UpperRightSound, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.LowerLeftSound, new { htmlAttributes = new { @class = "form-control2", id = "lls" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.LowerLeftSound, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.LowerRightSound, new { htmlAttributes = new { @class = "form-control2", id = "lrs" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.LowerRightSound, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.MiddleSound, new { htmlAttributes = new { @class = "form-control2", id = "ms" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.MiddleSound, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td id="rrBox">
+                    @Html.EditorFor(model => model.RR, new { htmlAttributes = new { @class = "form-control2", id = "rr" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.RR, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.HR, new { htmlAttributes = new { @class = "form-control2", id = "hr" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.HR, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.BP, new { htmlAttributes = new { @class = "form-control2", id = "bp" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.BP, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.Saturation, new { htmlAttributes = new { @class = "form-control2", id = "saturation" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Saturation, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="form-control2">
+                    productive @Html.RadioButtonFor(model => model.Cough, "productive", new { id = "productive", htmlAttributes = new { @class = "form-control2" } })
+                    non-productive @Html.RadioButtonFor(model => model.Cough, "non-productive", new { id = "nonProductive", htmlAttributes = new { @class = "form-control2" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Cough, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="form-control2"></td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.O2Device, new { htmlAttributes = new { @class = "form-control2", id = "o2Device" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.O2Device, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.Flow, new { htmlAttributes = new { @class = "form-control2", id = "flow" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Flow, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr><td class="form-control2"></td></tr>
 
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.Activity1, new { htmlAttributes = new { @class = "form-control", id = "activity1" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Activity1, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.Activity2, new { htmlAttributes = new { @class = "form-control", id = "activity2" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Activity2, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.Activity3, new { htmlAttributes = new { @class = "form-control", id = "activity3" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Activity3, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.EditorFor(model => model.Activity4, new { htmlAttributes = new { @class = "form-control", id = "activity4" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Activity4, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control">
-                mask @Html.RadioButtonFor(model => model.RouteGiven, "mask", new { id = "mask", htmlAttributes = new { @class = "form -control" } })
-                mouthpiece @Html.RadioButtonFor(model => model.RouteGiven, "mouthpiece", new { id = "mouthpiece", htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.RouteGiven, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td class="form-control">
-                well @Html.RadioButtonFor(model => model.HowTolerated, "well", new { id = "wellTolerated", htmlAttributes = new { @class = "form -control" } })
-                poor @Html.RadioButtonFor(model => model.HowTolerated, "poor", new { id = "poorlyTolerated", htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.HowTolerated, "", new { @class = "text-danger" })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.Activity1, new { htmlAttributes = new { @class = "form-control2", id = "activity1" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Activity1, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.Activity2, new { htmlAttributes = new { @class = "form-control2", id = "activity2" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Activity2, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.Activity3, new { htmlAttributes = new { @class = "form-control2", id = "activity3" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Activity3, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.Activity4, new { htmlAttributes = new { @class = "form-control2", id = "activity4" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.Activity4, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="form-control2">
+                    mask @Html.RadioButtonFor(model => model.RouteGiven, "mask", new { id = "mask", htmlAttributes = new { @class = "form -control" } })
+                    mouthpiece @Html.RadioButtonFor(model => model.RouteGiven, "mouthpiece", new { id = "mouthpiece", htmlAttributes = new { @class = "form-control2" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.RouteGiven, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="form-control2">
+                    well @Html.RadioButtonFor(model => model.HowTolerated, "well", new { id = "wellTolerated", htmlAttributes = new { @class = "form -control" } })
+                    poor @Html.RadioButtonFor(model => model.HowTolerated, "poor", new { id = "poorlyTolerated", htmlAttributes = new { @class = "form-control2" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.HowTolerated, "", new { @class = "text-danger" })
+                </td>
+            </tr>
 
-        <tr>
-            <td id="submitButtonHolder"><input type="submit" value="Submit" id="submitButton" class="btn btn-default" /></td>
-        </tr>
-    </table>
+            <tr>
+                <td id="submitButtonHolder">
+                    <input type="submit" value="Submit" id="submitButton" class="btn btn-default" style="display:none" />
+                </td>
+            </tr>
+        </table>
+}
+    </div>
 
 
-    }
 
 </div>
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
 
 
 
@@ -331,36 +376,36 @@
 
 @*<div id="piechart"></div>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>*@
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>*@
 
 
 @* Not fully implemented - uses google chart api - eventually will hover over vital signs and fade in a line graph of trends *@
 @*<script>
-            var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
-            // Load google charts
-            google.charts.load('current', { 'packages': ['corechart'] });
-            google.charts.setOnLoadCallback(drawChart);
-            var list = [['Date', 'Saturation', 'RR']];
+                var data = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+                // Load google charts
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
+                var list = [['Date', 'Saturation', 'RR']];
 
-            data.history.forEach(function (x) {
-                if (x.Saturation != null) {
-                    var index = x.TimeDone.indexOf("T");
-                list.push([x.TimeDone.substring(index + 1,index + 6), x.Saturation, x.RR])
-            }
-            });
-            console.log(list.toString());
-            // Draw the chart and set the chart values
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable(list);
+                data.history.forEach(function (x) {
+                    if (x.Saturation != null) {
+                        var index = x.TimeDone.indexOf("T");
+                    list.push([x.TimeDone.substring(index + 1,index + 6), x.Saturation, x.RR])
+                }
+                });
+                console.log(list.toString());
+                // Draw the chart and set the chart values
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable(list);
 
-                // Optional; add a title and set the width and height of the chart
-                var options = { 'title': 'Oxygen Saturation', 'width': 1000, 'height': 200, 'is3D': true, pointSize: 10 };
+                    // Optional; add a title and set the width and height of the chart
+                    var options = { 'title': 'Oxygen Saturation', 'width': 1000, 'height': 200, 'is3D': true, pointSize: 10 };
 
-                // Display the chart inside the <div> element with id="piechart"
-                var chart = new google.visualization.LineChart(document.getElementById('piechart'));
-                chart.draw(data, options);
-            }
-</script>*@
+                    // Display the chart inside the <div> element with id="piechart"
+                    var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                }
+    </script>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,7 +1,6 @@
 ﻿
 // strip out all the connecting words
-var wordsToRemove = /\s*(^is|was|has|had|of|^a\s+|\s+a$|\s+a\s+|\s+to\s+|^to\s+|\s+to$\s+at\s+|^at\s+|\s+at$)\s*/g;
-
+var wordsToIgnore = ['in', 'on', 'is', 'was', 'has', 'had', 'of', 'a', 'to', 'the', 'for', 'at'];
 
 // vital and intervention tokens to regex match from dictation string
 var vitalTokens = [
@@ -33,9 +32,8 @@ var vitalTokens = [
             }
         },
 
-        // breath sounds not implemented yet
         {
-            re: /(clear|diminished|coarse|wheezes)\s(all lobes|upper lobes|upper left lobe|left upper lobe)/,
+            re: /(clear|diminished|coarse|wheezes)\s*(breath sounds)*\s(all lobes|upper lobes|upper left lobe|left upper lobe|left lobes)/,
             valueRe: /clear|diminished|coarse|wheezes/,
             action: (value) => {
                 $(function () {
@@ -44,7 +42,7 @@ var vitalTokens = [
             }
         },
         {
-            re: /(clear|diminished|coarse|wheezes)\s(all lobes|upper lobes|upper right lobe|right upper lobe)/,
+            re: /(clear|diminished|coarse|wheezes)\s*(breath sounds)*\s*(breath sounds)*\s(all lobes|upper lobes|upper right lobe|right upper lobe|right lobes)/,
             valueRe: /clear|diminished|coarse|wheezes/,
             action: (value) => {
                 $(function () {
@@ -53,7 +51,16 @@ var vitalTokens = [
             }
         },
         {
-            re: /(clear|diminished|coarse|wheezes)\s(all lobes|lower lobes|lower left lobe|left lower lobe)/,
+            re: /(clear|diminished|coarse|wheezes)\s*(breath sounds)*\s(all lobes|lower lobes|lower right lobe|right lower lobe|right lobes)/,
+            valueRe: /clear|diminished|coarse|wheezes/,
+            action: (value) => {
+                $(function () {
+                    $('#lrs').val(value).trigger('change');
+                })
+            }
+        },
+        {
+            re: /(clear|diminished|coarse|wheezes)\s*(breath sounds)*\s(all lobes|lower lobes|lower left lobe|left lower lobe|left lobes)/,
             valueRe: /clear|diminished|coarse|wheezes/,
             action: (value) => {
                 $(function () {
@@ -61,12 +68,13 @@ var vitalTokens = [
                 })
             }
         },
+
         {
-            re: /(clear|diminished|coarse|wheezes)\s(all lobes|lower lobes|lower right lobe|right lower lobe)/,
+            re: /(clear|diminished|coarse|wheezes)\s*(breath sounds)*\s(all lobes|middle lobe)/,
             valueRe: /clear|diminished|coarse|wheezes/,
             action: (value) => {
                 $(function () {
-                    $('#lrs').val(value).trigger('change');
+                    $('#ms').val(value).trigger('change');
                 })
             }
         },
@@ -222,6 +230,15 @@ var vitalTokens = [
             }
         },
         {
+            re: /cannula/,
+            valueRe: /cannula/,
+            action: (value) => {
+                $(function () {
+                    $('#o2Device').val(value).trigger('change');
+                });
+            }
+        },
+        {
             re: /productive/,
             valueRe: /productive/,
             action: (value) => {
@@ -236,18 +253,35 @@ var vitalTokens = [
             action: (value) => {
                 $(function () {
                     $('#nonProductive').prop("checked", true).trigger('click');
-                    console.log('checked!');
+                });
+            }
+        },
+        {
+            re: /[0-9]+( l | liters)/,
+            valueRe: /[0-9]+/,
+            action: (value) => {
+                $(function () {
+                    $('#flow').val(value).trigger('change');
+                });
+            }
+        },
+        {
+            re: /[0-9]+ \/ [0-9]+/,
+            valueRe: /[0-9]+ \/ [0-9]+/,
+            action: (value) => {
+                $(function () {
+                    $('#bp').val(value).trigger('change');
                 });
             }
         },
 
         // submit the chart
         {
-            re: /add chart/,
-            valueRe: /add chart/,
+            re: /save changes/,
+            valueRe: /save changes/,
             action: (value) => {
                 $(function () {
-                    $('#submitButton').click();
+                    $('#saveChanges').click();
                 });
             }
         }
@@ -279,22 +313,19 @@ var vitalTokens = [
         // removes all extemporaneous words from input string and passes string to findVitals
         this.process = function (text) {
             console.log('processing');
-            text = text.replace(wordsToRemove, ' ').trim().toLowerCase();
             console.log(text);
-            self.findVitals(text);
+            var result = '';
+            temp = text.toLowerCase().split(' ');
+            for (var i = 0; i < temp.length; i++) {
+                if (!wordsToIgnore.includes(temp[i])) {
+                    result += temp[i] + " ";
+                    console.log("Added: " + temp[i]);
+                }
+            }
+
+            result = result.trim();
+            console.log(result);
+            self.findVitals(result);
         };
     }
 
-
-// highligts each changed vital / intervention
-$(function () {
-    $("input").change(function () {
-        $(this).css({ 'font-weight': 900 });
-        $(this).animate({
-            backgroundColor: "#ffff00"
-            //color: "white",
-        },
-            1000);
-
-    });
-});

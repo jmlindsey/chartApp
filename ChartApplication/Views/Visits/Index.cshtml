@@ -33,7 +33,7 @@
         <td>
             @Html.ActionLink("Chart", "Chart", "Patients", new { id=item.VisitId }, null) |
             @Html.ActionLink("Demographics", "Details", "Patients", new { id=item.PatientId }, null) |
-            @Html.ActionLink("Past Visits", "History", new { id = item.Patient.PatientId })
+            @Html.ActionLink("Past Visits", "VisitHistory", new { id = item.Patient.PatientId })
         </td>
     </tr>
 }

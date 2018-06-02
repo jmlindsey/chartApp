@@ -7,17 +7,10 @@
 <link rel="stylesheet" href="~/Content/style.css" />
 
 
-@*<h3>
-    Visit Dates: @Html.DisplayFor(model => Model.VisitDate) - @Html.DisplayFor(model => Model.DischargeDate)
-</h3>
-<b>@Html.DisplayFor(model => model.PatientName)</b>
-<b>ME # @Model.PatientId</b>*@
-
 
 @foreach (var item in Model.History)
 {
-<table class="chartHistory">
-
+<table id="chartHistory">
     <tr>
         <td class="form-control2">
             @Html.DisplayFor(model => item.EmployeeInitials)
@@ -84,7 +77,7 @@
         </td>
     </tr>
     <tr>
-        <td class="form-control3">
+        <td class="form-control2">
             @Html.DisplayFor(model => item.Cough)
         </td>
     </tr>
@@ -126,7 +119,7 @@
         </td>
     </tr>
     <tr>
-        <td class="form-control3">
+        <td class="form-control2">
             @Html.DisplayFor(model => item.HowTolerated)
         </td>
     </tr>
@@ -134,10 +127,6 @@
 </table>
 }
 
-
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
 
 
 @* start scroll bart at most recent intervention history *@

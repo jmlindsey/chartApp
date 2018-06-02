@@ -1,0 +1,24 @@
+﻿@model ChartApplication.Models.ViewModels.VisitHistoryViewModel
+
+@{
+    ViewBag.Title = "VisitHistory";
+}
+
+
+
+<h2>VisitHistory</h2>
+
+<b>@Html.DisplayFor(model => model.PatientName)</b>
+
+<b>ME # @Model.PatientId</b>
+<dl>
+    <dt>Visit Date - Discharge Date</dt>
+    @foreach (var item in Model.VisitHistory)
+    {
+
+        <a href="@Url.Action("History", "Patients", new { id = item.VisitId })">
+            <dd>@Html.DisplayFor(model => item.VisitDate) - @Html.DisplayFor(model => item.DischargeDate)</dd>
+        </a>
+    }
+</dl>
+@Html.ActionLink("Back", "Index", "Visits", new { id = "backButton", @class = "btn btn-primary btn-large" })

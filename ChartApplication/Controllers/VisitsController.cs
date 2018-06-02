@@ -26,7 +26,7 @@ namespace ChartApplication.Controllers
         }
 
         // GET: Visits/History/5
-        public ActionResult History(int? id)
+        public ActionResult VisitHistory(int? id)
         {
 
             if (id == null)

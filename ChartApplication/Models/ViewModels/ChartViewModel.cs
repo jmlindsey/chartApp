@@ -35,16 +35,23 @@ namespace ChartApplication.Models.ViewModels
         public string PatientName { get; set; }
 
         //vitals
+        [Display(Name = "Upper Left")]
         public string UpperLeftSound { get; set; }
+        [Display(Name = "Upper Right")]
         public string UpperRightSound { get; set; }
+        [Display(Name = "Lower Left")]
         public string LowerLeftSound { get; set; }
+        [Display(Name = "Lower Right")]
         public string LowerRightSound { get; set; }
+        [Display(Name = "Middle")]
         public string MiddleSound { get; set; }
         public Nullable<int> RR { get; set; }
         public Nullable<int> HR { get; set; }
         public string BP { get; set; }
         public Nullable<int> Saturation { get; set; }
         public string Cough { get; set; }
+
+        [Display(Name ="O2 Device")]
         public string O2Device { get; set; }
         public Nullable<int> Flow { get; set; }
 
@@ -53,8 +60,12 @@ namespace ChartApplication.Models.ViewModels
         public string Activity2 { get; set; }
         public string Activity3 { get; set; }
         public string Activity4 { get; set; }
+
+        [Display(Name = "Route Given")]
         public string RouteGiven { get; set; }
         public string ResponseToTreatment { get; set; }
+
+        [Display(Name = "Patient Toleration")]
         public string HowTolerated { get; set; }
 
 

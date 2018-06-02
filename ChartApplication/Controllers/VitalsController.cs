@@ -15,11 +15,14 @@ namespace ChartApplication.Controllers
         private ChartEntities db = new ChartEntities();
 
         // GET: Vitals
-        public ActionResult Index()
+        [ChildActionOnly]
+        public ActionResult History()
         {
             var vitals = db.Vitals.Include(v => v.Patient);
             return View(vitals.ToList());
         }
+
+
 
         // GET: Vitals/Details/5
         public ActionResult Details(int? id)

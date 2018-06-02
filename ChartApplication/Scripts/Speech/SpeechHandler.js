@@ -42,7 +42,7 @@ function SpeechHandler(textProcessor) {
                     interim_transcript += event.results[i][0].transcript;
                 }
             }
-        }
+        };
 
         this.startDictation = function (event) {
             console.log("started");
@@ -50,7 +50,7 @@ function SpeechHandler(textProcessor) {
             try {
                 self.recognition.start();
             }
-            catch (err) { ; }
+            catch (err) { console.log(err); }
         };
     }
 }

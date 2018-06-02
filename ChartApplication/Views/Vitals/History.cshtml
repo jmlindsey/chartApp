@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ChartApplication.Models.Vital>
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTimeDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpperLeftSound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpperRightSound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LowerLeftSound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LowerRightSound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleSound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Saturation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cough)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.O2Device)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.AccountId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.PatientFirst)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTimeDone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpperLeftSound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpperRightSound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LowerLeftSound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LowerRightSound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleSound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Saturation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cough)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.O2Device)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.AccountId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.PatientFirst)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VitalId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VitalId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VitalId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -43,7 +43,7 @@ namespace ChartApplication.Controllers
             {
                 return HttpNotFound();
             }
-            var vitals = db.Vitals.Where(x => x.PatientId == patient.PatientId).Where(i => i.DateTimeDone >= visit.VisitDate);
+            var vitals = db.Vitals.Where(x => x.PatientId == patient.PatientId).Where(v => v.DateTimeDone >= visit.VisitDate);
 
             var userId = User.Identity.GetUserId();
             var interventions = db.Interventions.Where(x => x.PatientId == patient.PatientId).Where(i => i.DateTimeDone >= visit.VisitDate);
@@ -53,52 +53,54 @@ namespace ChartApplication.Controllers
             {
                 History = vitals.Join(interventions,
                 v => v.DateTimeDone, i => i.DateTimeDone,
-                (v, i) => 
+                (v, i) =>
                     new ChartViewModelInstance
-                {
-                    EmployeeName = i.Employee.LastName + ", " + i.Employee.FirstName,
-                    EmployeeInitials = i.Employee.FirstName.Substring(0, 1) + i.Employee.LastName.Substring(0, 1),
-                    Credentials = i.Employee.LicenseCredentials,
+                    {
+                        EmployeeName = i.Employee.LastName + ", " + i.Employee.FirstName,
+                        EmployeeInitials = i.Employee.FirstName.Substring(0, 1) + i.Employee.LastName.Substring(0, 1),
+                        Credentials = i.Employee.LicenseCredentials,
 
-                    Activity1 = i.Activity1,
-                    Activity2 = i.Activity2,
-                    Activity3 = i.Activity3,
-                    Activity4 = i.Activity4,
-                    BP = v.BP,
-                    Cough = v.Cough,
-                    DateDone = v.DateTimeDone,
-                    TimeDone = v.DateTimeDone,
-                    Flow = v.Flow,
-                    HowTolerated = i.HowTolerated,
-                    HR = v.HR,
-                    LowerLeftSound = v.LowerLeftSound,
-                    LowerRightSound = v.LowerRightSound,
-                    MiddleSound = v.MiddleSound,
-                    O2Device = v.O2Device,
-                    PatientId = patient.PatientId,
-                    PatientName = v.Patient.PatientLast + ", " + v.Patient.PatientFirst,
-                    ResponseToTreatment = i.ResponeToTreatment,
-                    RouteGiven = i.RouteGiven,
-                    RR = v.RR,
-                    Saturation = v.Saturation,
-                    UpperLeftSound = v.UpperLeftSound,
-                    UpperRightSound = v.UpperRightSound
-                })
-        };
+                        Activity1 = i.Activity1,
+                        Activity2 = i.Activity2,
+                        Activity3 = i.Activity3,
+                        Activity4 = i.Activity4,
+                        BP = v.BP,
+                        Cough = v.Cough,
+                        DateDone = v.DateTimeDone,
+                        TimeDone = v.DateTimeDone,
+                        Flow = v.Flow,
+                        HowTolerated = i.HowTolerated,
+                        HR = v.HR,
+                        LowerLeftSound = v.LowerLeftSound,
+                        LowerRightSound = v.LowerRightSound,
+                        MiddleSound = v.MiddleSound,
+                        O2Device = v.O2Device,
+                        PatientId = patient.PatientId,
+                        PatientName = v.Patient.PatientLast + ", " + v.Patient.PatientFirst,
+                        ResponseToTreatment = i.ResponeToTreatment,
+                        RouteGiven = i.RouteGiven,
+                        RR = v.RR,
+                        Saturation = v.Saturation,
+                        UpperLeftSound = v.UpperLeftSound,
+                        UpperRightSound = v.UpperRightSound
+                    })
+            };
             ChartViewModel chartVM = new ChartViewModel
             {
                 EmployeeId = employee.EmployeeId,
                 EmployeeName = employee.LastName + ", " + employee.FirstName,
-                EmployeeInitials = employee.FirstName.Substring(0,1) + employee.LastName.Substring(0,1),
+                EmployeeInitials = employee.FirstName.Substring(0, 1) + employee.LastName.Substring(0, 1),
                 Credentials = employee.LicenseCredentials,
                 PatientId = patient.PatientId,
                 PatientName = patient.PatientLast + ", " + patient.PatientFirst,
                 historyVM = histVM
             };
-        
+
             chartVM.historyVM.History = chartVM.historyVM.History.OrderBy(x => x.DateDone).OrderBy(x => x.TimeDone);
             return View(chartVM);
         }
+
+
 
         // POST: Interventions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -151,60 +153,81 @@ namespace ChartApplication.Controllers
             return View(chartVM);
         }
 
-
-
-        // GET: Interventions/Create
-        public ActionResult ChartHistory(int? id)
+        [ChildActionOnly]
+        public ActionResult ChartHistory()
         {
+            return View();
+        }
+
+        // Get
+        public ActionResult History(int? id)
+        {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var visit = db.Visits.Find(id);
-            if (visit == null)
+            var patient = db.Patients.Find(visit.PatientId);
+            if (patient == null)
             {
                 return HttpNotFound();
             }
-            var vitals = db.Vitals.Where(x => x.PatientId == id).Where(x => x.DateTimeDone >= visit.VisitDate).Where(x => x.DateTimeDone <= visit.DischargeDate);
-            var interventions = db.Interventions.Where(x => x.PatientId == id).Where(x => x.DateTimeDone >= visit.VisitDate).Where(x => x.DateTimeDone <= visit.DischargeDate);
-            var patient = db.Patients.SingleOrDefault(p => p.PatientId == id); 
+            var vitals = db.Vitals.Where(x => x.PatientId == patient.PatientId).Where(v => v.DateTimeDone >= visit.VisitDate).Where(v => v.DateTimeDone <= visit.DischargeDate);
+
+            var userId = User.Identity.GetUserId();
+            var interventions = db.Interventions.Where(x => x.PatientId == patient.PatientId).Where(i => i.DateTimeDone >= visit.VisitDate).Where(v => v.DateTimeDone <= visit.DischargeDate);
+            var employee = db.Employees.FirstOrDefault(e => e.AccountId == userId);
+
             HistoryViewModel histVM = new HistoryViewModel
             {
-
                 History = vitals.Join(interventions,
                 v => v.DateTimeDone, i => i.DateTimeDone,
-                (v, i) => new ChartViewModelInstance
-                {
-                    EmployeeInitials = i.Employee.FirstName.Substring(0,1) + i.Employee.LastName.Substring(0,1),
-                    Credentials = i.Employee.LicenseCredentials,
-                    EmployeeName = i.Employee.LastName + ", " + i.Employee.FirstName,
-                    Activity1 = i.Activity1,
-                    Activity2 = i.Activity2,
-                    Activity3 = i.Activity3,
-                    Activity4 = i.Activity4,
-                    BP = v.BP,
-                    Cough = v.Cough,
-                    DateDone = v.DateTimeDone,
-                    TimeDone = v.DateTimeDone,
-                    Flow = v.Flow,
-                    HowTolerated = i.HowTolerated,
-                    HR = v.HR,
-                    LowerLeftSound = v.LowerLeftSound,
-                    LowerRightSound = v.LowerRightSound,
-                    MiddleSound = v.MiddleSound,
-                    O2Device = v.O2Device,
-                    PatientId = patient.PatientId,
-                    PatientName = v.Patient.PatientLast + ", " + v.Patient.PatientFirst,
-                    ResponseToTreatment = i.ResponeToTreatment,
-                    RouteGiven = i.RouteGiven,
-                    RR = v.RR,
-                    Saturation = v.Saturation,
-                    UpperLeftSound = v.UpperLeftSound,
-                    UpperRightSound = v.UpperRightSound
-                })
+                (v, i) =>
+                    new ChartViewModelInstance
+                    {
+                        EmployeeName = i.Employee.LastName + ", " + i.Employee.FirstName,
+                        EmployeeInitials = i.Employee.FirstName.Substring(0, 1) + i.Employee.LastName.Substring(0, 1),
+                        Credentials = i.Employee.LicenseCredentials,
+
+                        Activity1 = i.Activity1,
+                        Activity2 = i.Activity2,
+                        Activity3 = i.Activity3,
+                        Activity4 = i.Activity4,
+                        BP = v.BP,
+                        Cough = v.Cough,
+                        DateDone = v.DateTimeDone,
+                        TimeDone = v.DateTimeDone,
+                        Flow = v.Flow,
+                        HowTolerated = i.HowTolerated,
+                        HR = v.HR,
+                        LowerLeftSound = v.LowerLeftSound,
+                        LowerRightSound = v.LowerRightSound,
+                        MiddleSound = v.MiddleSound,
+                        O2Device = v.O2Device,
+                        PatientId = patient.PatientId,
+                        PatientName = v.Patient.PatientLast + ", " + v.Patient.PatientFirst,
+                        ResponseToTreatment = i.ResponeToTreatment,
+                        RouteGiven = i.RouteGiven,
+                        RR = v.RR,
+                        Saturation = v.Saturation,
+                        UpperLeftSound = v.UpperLeftSound,
+                        UpperRightSound = v.UpperRightSound
+                    })
             };
-            histVM.History = histVM.History.OrderBy(x => x.DateDone).OrderBy(x => x.TimeDone);
-            return View(histVM);
+            ChartViewModel chartVM = new ChartViewModel
+            {
+                EmployeeId = employee.EmployeeId,
+                EmployeeName = employee.LastName + ", " + employee.FirstName,
+                EmployeeInitials = employee.FirstName.Substring(0, 1) + employee.LastName.Substring(0, 1),
+                Credentials = employee.LicenseCredentials,
+                PatientId = patient.PatientId,
+                PatientName = patient.PatientLast + ", " + patient.PatientFirst,
+                historyVM = histVM
+            };
+
+            chartVM.historyVM.History = chartVM.historyVM.History.OrderBy(x => x.DateDone).OrderBy(x => x.TimeDone);
+            return View(chartVM);
         }
 
         // GET: Patients/Details/5

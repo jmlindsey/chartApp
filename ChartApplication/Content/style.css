@@ -18,7 +18,7 @@ table {
     margin: 0;
     border-collapse: collapse;
     padding: 0;
-
+    border-spacing: 0px;
 }
 
 
@@ -40,17 +40,21 @@ table {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    margin: 0;
 }
 
 .form-control2 {
     line-height: 1.6;
+
 }
 
 .form-control3 {
     line-height: 1.7;
 }
 
-
+#chartHistory {
+    border-spacing: 0;
+}
 
 
 
@@ -61,12 +65,11 @@ table {
 #chartHistoryContainer {
     display: inline-block;
     max-width: 200%;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 #chartContainer {
     max-width: 100%;
     white-space: nowrap;
-    border: 1px solid green;
     display: flex;
     flex-wrap: nowrap;
 }
@@ -95,10 +98,84 @@ form {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #003885;
 }
 
-    /* Handle on hover */
+/* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: #555;
+        background: #021a3c;
     }
+
+#bracket {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+}
+
+#loaderContainer p {
+    display: inline;
+    font-size: 50px;
+
+}
+
+#loaderContainer {
+    position: fixed;
+    height:500px;
+    width: 100%;
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 1;
+}
+
+#loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 16px solid #ffffff;
+    border-radius: 50%;
+    border-top: 16px solid #003885;
+    border-bottom: 16px solid #003885;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.button {
+    white-space: normal;
+    display: block;
+    background-color: #003885;
+    height: 20%;
+    width: 90px;
+    color: white;
+    font-size: 20px;
+    border-radius: 5%;
+}
+
+#showHideHistory, #backButton, #saveChanges {
+    display: block;
+    background-color: #003885;
+    margin-bottom: 10%;
+}
